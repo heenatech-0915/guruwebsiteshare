@@ -17,7 +17,7 @@ dependencies:
   connectivity_plus: ^2.2.1
   country_pickers: ^2.0.0
   cupertino_icons: ^1.0.2
-  dio: ^4.0.6
+  dio: ^5.2.1+1
   firebase_analytics: 
   firebase_auth: 
   firebase_core: 
