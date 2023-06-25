@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "321774143102",
+    "project_id": "cpcdiagnostics---development",
+    "storage_bucket": "cpcdiagnostics---development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321774143102:android:c8bd82384582203bb57a2f",
+        "android_client_info": {
+          "package_name": "com.bizzonit.cpcdiagnostics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321774143102-6s4i6t819gcie9buhgbbcjghglov8b8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0SwcUJkuLt-VxCwmid-HBYCh8tB0n6V0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321774143102-6s4i6t819gcie9buhgbbcjghglov8b8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
