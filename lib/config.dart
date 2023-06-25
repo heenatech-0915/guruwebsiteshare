@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Config {
   // copy your server url from admin panel
-  static String apiServerUrl = "https://cpcdiagnostics.bizzonit.com/api";
+  static String apiServerUrl = /*"https://cpcdiagnostics.bizzonit.online/api";*/"https://cpcdiagnostics.bizzonit.com/api";
   // copy your api key from admin panel
   static String apiKey = "QK3VBBXBY06TDZOV";
 

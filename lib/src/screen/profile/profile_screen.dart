@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cpcdiagnostics_ecommerce/src/screen/profile/support_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:cpcdiagnostics_ecommerce/src/_route/routes.dart';
@@ -10,17 +11,16 @@ import 'package:cpcdiagnostics_ecommerce/src/utils/validators.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../controllers/auth_controller.dart';
 import '../../data/local_data_helper.dart';
 import '../../models/user_data_model.dart';
 import '../../servers/repository.dart';
 import '../../utils/responsive.dart';
 import '../../widgets/loader/shimmer_profile_screen.dart';
+import 'about_us.dart';
 import 'edit_profile_screen.dart';
 import 'my_download_screen.dart';
 import 'wallet/my_wallet_screen.dart';
-import 'order_history_screen.dart';
 
 class ProfileContent extends StatefulWidget {
   const ProfileContent({Key? key}) : super(key: key);
@@ -38,6 +38,7 @@ class _ProfileContentState extends State<ProfileContent> {
 
   @override
   Widget build(BuildContext context) {
+    print('building profile page');
     return Obx(() => _profileWithLogin(_profileContentController.user!.value));
   }
 
@@ -430,14 +431,14 @@ class _ProfileContentState extends State<ProfileContent> {
                               ),
                             ),
                           ),
-                          Padding(
+                         /* Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: const Divider(
                               color: AppThemeData.dividerColor,
                               thickness: 1,
                             ),
-                          ),
-                          InkWell(
+                          ),*/
+/*                          InkWell(
                             onTap: () {
                               homeScreenController.changeTabIndex(3);
                             },
@@ -460,7 +461,7 @@ class _ProfileContentState extends State<ProfileContent> {
                                 ),
                               ),
                             ),
-                          ),
+                          )*/
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: const Divider(
@@ -490,7 +491,7 @@ class _ProfileContentState extends State<ProfileContent> {
                               ),
                             ),
                           ),
-                          Padding(
+                         /* Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: const Divider(
                                 color: AppThemeData.dividerColor, thickness: 1),
@@ -518,12 +519,12 @@ class _ProfileContentState extends State<ProfileContent> {
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
+                          ),*/
+                          /*Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: const Divider(
                                 color: AppThemeData.dividerColor, thickness: 1),
-                          ),
+                          )*//*,
                           InkWell(
                             onTap: () {
                               Get.toNamed(
@@ -546,7 +547,7 @@ class _ProfileContentState extends State<ProfileContent> {
                                     "assets/icons/order_history.svg"),
                               ),
                               title: Text(
-                                AppTags.orderHistory.tr,
+                                "Request History",
                                 style: TextStyle(
                                   fontSize: isMobile(context) ? 16.sp : 12.sp,
                                   fontWeight: FontWeight.w500,
@@ -554,8 +555,8 @@ class _ProfileContentState extends State<ProfileContent> {
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
+                          ),*/
+                          /*Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: const Divider(
                                 color: AppThemeData.dividerColor, thickness: 1),
@@ -583,7 +584,7 @@ class _ProfileContentState extends State<ProfileContent> {
                                 ),
                               ),
                             ),
-                          ),
+                          ),*/
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: const Divider(
@@ -605,6 +606,63 @@ class _ProfileContentState extends State<ProfileContent> {
                               ),
                               title: Text(
                                 AppTags.changePassword.tr,
+                                style: TextStyle(
+                                  fontSize: isMobile(context) ? 16.sp : 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppThemeData.descriptionTextColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            child: const Divider(
+                                color: AppThemeData.dividerColor, thickness: 1),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.to(()=>const ContactUs());
+                            },
+                            child: ListTile(
+                              horizontalTitleGap: 0.0,
+                              visualDensity: const VisualDensity(
+                                  horizontal: 0, vertical: -4),
+                              leading: SizedBox(
+                                height: 20.h,
+                                width: 20.w,
+                                child: SvgPicture.asset(
+                                    "assets/icons/phone.svg"),
+                              ),
+                              title: Text(
+                                AppTags.contactUS.tr,
+                                style: TextStyle(
+                                  fontSize: isMobile(context) ? 16.sp : 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppThemeData.descriptionTextColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            child: const Divider(
+                                color: AppThemeData.dividerColor, thickness: 1),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              Get.to(()=>const SupportPage());
+                            },
+                            child: ListTile(
+                              horizontalTitleGap: 0.0,
+                              visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+                              leading: SizedBox(
+                                height: 20.h,
+                                width: 20.w,
+                                child: SvgPicture.asset(
+                                    "assets/icons/technical-support.svg"),
+                              ),
+                              title: Text(
+                                'Technical Support',
                                 style: TextStyle(
                                   fontSize: isMobile(context) ? 16.sp : 12.sp,
                                   fontWeight: FontWeight.w500,

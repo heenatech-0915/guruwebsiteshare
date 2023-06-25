@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -66,10 +67,8 @@ class CategoryScreen extends StatelessWidget {
                                               children: [
                                                 Expanded(
                                                   child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       _catController.featuredCategory.value.icon!.isNotEmpty?Icon(
                                                         MdiIcons.fromString(
@@ -145,7 +144,7 @@ class CategoryScreen extends StatelessWidget {
                                     _catController
                                         .featuredCategory.value.banner!,
                                   ),
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
@@ -158,7 +157,9 @@ class CategoryScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+
                             SizedBox(height: 15.h),
+
                             Row(
                               children: [
                                 Text(
@@ -167,7 +168,9 @@ class CategoryScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+
                             SizedBox(height: 10.h),
+
                             Expanded(
                               child: GridView.builder(
                                 padding: EdgeInsets.symmetric(
@@ -277,6 +280,7 @@ class CategoryScreen extends StatelessWidget {
                           children: [
                             Container(
                               height: isMobile(context)?100.h:130.h,
+                              margin: EdgeInsets.only(top: 20.h),
                               decoration: BoxDecoration(
                                 color: const Color(0xffDBE8C2),
                                 borderRadius:
@@ -312,7 +316,8 @@ class CategoryScreen extends StatelessWidget {
                                     .subCategories!
                                     .length,
                                 itemBuilder: (_, subCtIndex) {
-                                  return _catController
+
+                                   return _catController
                                           .categoryList[
                                               _catController.index.value]
                                           .subCategories![subCtIndex]
@@ -328,8 +333,6 @@ class CategoryScreen extends StatelessWidget {
                                                       .categoryList[
                                                           _catController
                                                               .index.value]
-                                                      .subCategories![
-                                                          subCtIndex]
                                                       .id,
                                                   title: _catController
                                                       .categoryList[
@@ -496,7 +499,15 @@ class CategoryScreen extends StatelessWidget {
                                             ],
                                           ),
                                         )
-                                      : InkWell(
+                                      : _catController
+                                       .categoryList[
+                                   _catController
+                                       .index.value].subCategories![subCtIndex]
+                                       .title=="Instruments" || _catController
+                                       .categoryList[
+                                   _catController
+                                       .index.value].subCategories![subCtIndex]
+                                       .title=="Reagents"?InkWell(
                                           onTap: () {
                                             Navigator.of(context).push(
                                               MaterialPageRoute(
@@ -505,17 +516,17 @@ class CategoryScreen extends StatelessWidget {
                                                   id: _catController
                                                       .categoryList[
                                                           _catController
-                                                              .index.value]
-                                                      .subCategories![
-                                                          subCtIndex]
-                                                      .id!,
+                                                              .index.value].id!,
                                                   title: _catController
                                                       .categoryList[
                                                           _catController
                                                               .index.value]
-                                                      .subCategories![
-                                                          subCtIndex]
                                                       .title,
+                                                      subtitle: _catController
+                                                          .categoryList[
+                                                      _catController
+                                                          .index.value].subCategories![subCtIndex]
+                                                          .title,
                                                 ),
                                               ),
                                             );
@@ -527,13 +538,12 @@ class CategoryScreen extends StatelessWidget {
                                             child: Container(
                                               height: 80.h,
                                               decoration: BoxDecoration(
-                                                color: AppThemeData.buttonTextColor,
-                                                borderRadius: BorderRadius.all(
+                                                  color: AppThemeData.buttonTextColor,
+                                                  borderRadius: BorderRadius.all(
                                                   Radius.circular(10.r),
                                                 ),
-                                                border: Border.all(
-                                                  color:
-                                                      const Color(0xFFEEEEEE),
+                                                  border: Border.all(
+                                                  color: const Color(0xFFEEEEEE),
                                                   width: 1.w,
                                                 ),
                                               ),
@@ -562,12 +572,8 @@ class CategoryScreen extends StatelessWidget {
                                                   ),
                                                   Expanded(
                                                     child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text(
                                                           _catController
@@ -581,20 +587,15 @@ class CategoryScreen extends StatelessWidget {
                                                               .toString(),
                                                           style: TextStyle(
                                                               fontSize: isMobile(context)? 12.sp:10.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontFamily:
-                                                                  "Poppins_Medium"),
+                                                              fontWeight: FontWeight.w600,
+                                                              fontFamily: "Poppins_Medium"),
                                                         ),
                                                         Text(
-                                                          "${AppTags.totalProduct.tr}: ${_catController.categoryList[_catController.index.value].subCategories![subCtIndex].childCategories!.length}",
+                                                          "${AppTags.totalProduct.tr}: ${_catController.categoryList[_catController.index.value].subCategories![subCtIndex].count}",
                                                           style: TextStyle(
                                                             fontSize: isMobile(context)? 12.sp:10.sp,
-                                                            fontFamily:
-                                                                "Poppins",
-                                                            color: const Color(
-                                                                0xFF666666),
+                                                            fontFamily: "Poppins",
+                                                            color: const Color(0xFF666666),
                                                           ),
                                                         ),
                                                       ],
@@ -604,7 +605,7 @@ class CategoryScreen extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                        );
+                                        ):SizedBox();
                                 },
                               ),
                             )
@@ -620,6 +621,9 @@ class CategoryScreen extends StatelessWidget {
   }
 
   Widget _categoryContent(int index,context) {
+    _catController.categoryList[_catController.index.value].subCategories![0].childCategories!.forEach((element) {
+      print(element.title);
+    });
     return InkWell(
       onTap: () {
         _catController.updateFeaturedIndexData(false);

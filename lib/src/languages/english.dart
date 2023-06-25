@@ -149,7 +149,7 @@ const Map<String, String> enUS = {
   "privacyPolicy": "Privacy Policy",
   "termsCondition": "Terms Condition",
   "apply": "Apply",
-  "productDeleted": "Product deleted from your cart.",
+  "productDeleted": "Product deleted from your inquiry list.",
   "proceedToPayment": "Proceed To Payment",
   "send": "Send",
   "verify": "Verify",

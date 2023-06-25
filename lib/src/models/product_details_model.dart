@@ -1,3 +1,5 @@
+import 'package:cpcdiagnostics_ecommerce/src/models/product_by_category_model.dart';
+
 class ProductDetailsModel {
   bool? success;
   String? message;
@@ -43,6 +45,7 @@ class Data {
   String? description;
   bool isFavourite = false;
   String? shortDescription;
+  String? longDescription;
   bool? hasVariant;
   bool isWholesale = false;
   bool? isCatalog;
@@ -60,6 +63,11 @@ class Data {
   List<WholesalePrices>? wholesalePrices;
   FormData? form;
   Links? links;
+  String? sku;
+  List<CategoryProductData> linkedProducts = [];
+  int? ordering;
+  String? pdf;
+  String ?tech_specification;
 
   ClassifiedContactInfo? classifiedContactInfo;
   String? catalogExternalLink;
@@ -85,6 +93,7 @@ class Data {
     this.description,
     required this.isFavourite,
     this.shortDescription,
+    this.longDescription,
     this.hasVariant,
     this.isWholesale = false,
     this.specifications,
@@ -104,6 +113,11 @@ class Data {
     this.links,
     this.catalogExternalLink,
     this.classifiedContactInfo,
+    this.sku,
+    this.linkedProducts = const[],
+    this.ordering,
+    this.pdf,
+    this.tech_specification
   });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -137,6 +151,7 @@ class Data {
     description = json['description'];
     isFavourite = json['is_favourite'] ?? false;
     shortDescription = json['short_description'];
+    longDescription = json['long_description'];
     hasVariant = json['has_variant'];
     isWholesale = json['is_wholesale'];
     isCatalog = json['is_catalog'];
@@ -171,6 +186,21 @@ class Data {
         ? ClassifiedContactInfo.fromJson(json['classified_contact_info'])
         : null;
     catalogExternalLink = json['catalog_external_link'];
+    sku = json["sku"] ?? "";
+    if(json['linked_products'] is List ){
+      List<dynamic> products =  json['linked_products'];
+       for (var element in products) {
+         linkedProducts.add(CategoryProductData.fromJson(element));
+       }
+    }
+    ordering = json['ordering'] ?? 0;
+    if(json['Specification_pdf'] is List){
+      pdf = "";
+    }
+    else{
+      pdf =json['Specification_pdf']['file'];
+    }
+    tech_specification = json['tech_specification'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

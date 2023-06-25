@@ -1,8 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="8.5" height="24.218" viewBox="0 0 8.5 24.218">
-  <g id="Group_12944" data-name="Group 12944" transform="translate(17964.703 -710.782)">
-    <g id="_cb2127ff" data-name="#cb2127ff" transform="translate(-17962.576 710.782)">
-      <path id="Path_10527" data-name="Path 10527" d="M178.526,5.12A2.865,2.865,0,0,1,179.394.4c1.716-.771,4.468-.191,4.6,2.032v.607C183.889,5.673,180.386,6.447,178.526,5.12Z" transform="translate(-177.624 -0.079)" fill="#c9151b"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="17px" viewBox="0 0 20 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>home</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rounded" transform="translate(-816.000000, -289.000000)">
+            <g id="Action" transform="translate(100.000000, 100.000000)">
+                <g id="-Round-/-Action-/-home" transform="translate(714.000000, 186.000000)">
+                    <g transform="translate(0.000000, 0.000000)">
+                        <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                        <path d="M10,19 L10,14 L14,14 L14,19 C14,19.55 14.45,20 15,20 L18,20 C18.55,20 19,19.55 19,19 L19,12 L20.7,12 C21.16,12 21.38,11.43 21.03,11.13 L12.67,3.6 C12.29,3.26 11.71,3.26 11.33,3.6 L2.97,11.13 C2.63,11.43 2.84,12 3.3,12 L5,12 L5,19 C5,19.55 5.45,20 6,20 L9,20 C9.55,20 10,19.55 10,19 Z" id="🔹Icon-Color" fill="#1D1D1D"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
     </g>
-    <path id="Path_10532" data-name="Path 10532" d="M174.1,20.969c1.7-.086,3.4-.035,5.095-.051-.615,3.779-1.175,7.566-1.8,11.346-.276.876.887.9,1.436.81-.206,1.183-.389,2.37-.56,3.557-1.627.385-3.452.7-5-.128-1.339-.813-1.172-2.573-1.012-3.908C172.863,28.718,173.509,24.846,174.1,20.969Z" transform="translate(-18136.861 697.975)" fill="#333"/>
-  </g>
 </svg>

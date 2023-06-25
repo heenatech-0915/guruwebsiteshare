@@ -21,13 +21,6 @@ class CurrencyConverterController extends GetxController {
 
   void fetchCurrencyData() {
     ConfigModel data = LocalDataHelper().getConfigData();
-    appCurrencyCode = LocalDataHelper().getCurrCode() ?? "USD";
-    currencyIndex = data.data!.currencies!
-        .indexWhere(((currIndex) => currIndex.code == appCurrencyCode));
-    appCurrencySymbol = data.data!.currencies![currencyIndex].symbol!;
-    currencySymbolFormat = data.data!.currencyConfig!.currencySymbolFormat!;
-    decimalSeparator = data.data!.currencyConfig!.decimalSeparator!;
-    numberOfDecimals = data.data!.currencyConfig!.noOfDecimals!;
   }
 
   convertCurrency(price) {

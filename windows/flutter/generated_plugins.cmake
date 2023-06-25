@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
+  firebase_core
   smart_auth
   syncfusion_pdfviewer_windows
   url_launcher_windows

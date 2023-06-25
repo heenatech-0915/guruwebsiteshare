@@ -27,6 +27,10 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(Get.arguments);
+    if(Get.arguments!=null){
+      authController.customRoute = true;
+    }
     return Scaffold(
       body: SizedBox(
         height: size.height,
@@ -184,24 +188,6 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 30.h,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.dashboardScreen);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset("assets/icons/arrow_back.svg",height: 10.h,width: 10.w,),
-                     SizedBox(
-                      width: 5.w,
-                    ),
-                    Text(
-                      AppTags.backToShopping.tr,
-                      style: isMobile(context)? AppThemeData.backToHomeTextStyle_12:AppThemeData.categoryTitleTextStyle_9Tab,
-                    ),
-                  ],
-                ),
               ),
               SizedBox(
                 height: 53.h,

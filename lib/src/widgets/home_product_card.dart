@@ -34,8 +34,8 @@ class HomeProductCard extends StatelessWidget {
       color: AppThemeData.productBannerColor,
       location: RibbonLocation.topEnd,
       child: Container(
-        width:isMobile(context)? 165.w:120.w,
-        height: 230.h,
+        width:isMobile(context)? 90.w:120.w,
+        height: 180.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -164,7 +164,7 @@ class HomeProductCard extends StatelessWidget {
                   style: isMobile(context)? AppThemeData.todayDealTitleStyle:AppThemeData.todayDealTitleStyleTab),
             ),
             SizedBox(height: 5.h),
-            Padding(
+/*            Padding(
               padding: EdgeInsets.symmetric(horizontal: 18.w),
               child: Center(
                 child: double.parse(dataModel![index].specialDiscount) == 0.000
@@ -196,7 +196,7 @@ class HomeProductCard extends StatelessWidget {
                         ],
                       ),
               ),
-            ),
+            )*/
             SizedBox(height: 5.h),
           ],
         ),

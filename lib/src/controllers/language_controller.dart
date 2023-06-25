@@ -14,7 +14,7 @@ class LanguageController extends GetxController {
       'countryCode': 'US',
       'description': 'English'
     },
-    'bn_BD': {
+    /*'bn_BD': {
       'languageCode': 'bn',
       'countryCode': 'BD',
       'description': 'বাংলা'
@@ -23,7 +23,7 @@ class LanguageController extends GetxController {
       'languageCode': 'ar',
       'countryCode': 'SA',
       'description': 'عربى'
-    }
+    }*/
   };
 
   List<Languages> lang=LocalDataHelper().getConfigData().data!.languages!;
@@ -50,9 +50,13 @@ class LanguageController extends GetxController {
 
   List<Languages> getAppLanguageList() {
      List<Languages> languageList = [];
-    optionsLocales.forEach((k, v) => languageList.add(Languages(
+    optionsLocales.forEach((k, v){
+      if(optionsLocales[k]['languageCode']=="en") {
+        languageList.add(Languages(
         code: optionsLocales[k]['languageCode'],
-        name: optionsLocales[k]['description'])));
+        name: optionsLocales[k]['description']));
+      }
+    });
     return languageList;
   }
 }

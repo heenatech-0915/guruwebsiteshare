@@ -335,7 +335,8 @@ class _EditProfileState extends State<EditProfile> {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.grey, backgroundColor: Colors.white, elevation: 12,
+               // foregroundColor: Colors.grey,
+                primary: Colors.white, elevation: 12,
                 shadowColor: AppThemeData.boxShadowColor.withOpacity(0.15),
                 padding: EdgeInsets.all(12.r),
                 shape: RoundedRectangleBorder(

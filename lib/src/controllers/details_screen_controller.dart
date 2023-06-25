@@ -1,6 +1,9 @@
 
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flowder/flowder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +15,8 @@ import 'package:cpcdiagnostics_ecommerce/src/servers/repository.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/analytics_helper.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/constants.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/validators.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 
 class DetailsPageController extends GetxController {
   PageController pageController = PageController();
@@ -43,6 +48,7 @@ class DetailsPageController extends GetxController {
   String colorId = '';
   String colorValue = '';
   var pageView=0.obs;
+  RxInt ordering = 0.obs;
 
   updatePageIncrement(){
     int imageLength = productDetail.value.data!.descriptionImages!.length;
@@ -88,6 +94,20 @@ class DetailsPageController extends GetxController {
     } else {
       printLog('No image selected.');
     }
+  }
+
+  generateDeepLink() async {
+    FirebaseDynamicLinks firebaseDynamicLinks = FirebaseDynamicLinks.instance;
+    var parameters = DynamicLinkParameters(
+        link: Uri.parse("https://www.cpcdiagnostics.bizzonit.com?product_id=$productId"),
+        uriPrefix: "https://cpcdiag.page.link",
+        androidParameters: const AndroidParameters(packageName: 'com.bizzonit.cpcdiagnostics'),
+    );
+    var shortLink = await firebaseDynamicLinks.buildLink(parameters);
+    Share.share(
+         shortLink.toString(),
+        subject: productDetail.value.data!.title
+    );
   }
 
 
@@ -154,7 +174,9 @@ class DetailsPageController extends GetxController {
 
   Future<ProductDetailsModel> getProductDetails(int proId) async {
     return await Repository().getProductDetails(proId).then((value) {
+      log(value.toString());
       productDetail.value = value;
+      ordering.value = productDetail.value.data!.ordering!;
       _minimumOrderQuantity.value = value.data!.minimumOrderQuantity ?? 1;
       productQuantity.value = _minimumOrderQuantity.value;
       //calculate total price
@@ -209,6 +231,7 @@ class DetailsPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    print('DetailsPageController init');
     productImageNumber = 0.obs;
     ratingController = TextEditingController(text: '3.0');
     rating = initialRating;
@@ -241,6 +264,39 @@ class DetailsPageController extends GetxController {
     }
     totalPrice.value = price;
     update();
+  }
+
+  String path = "";
+  RxDouble downloadProgress = 0.0.obs;
+  downloadBrochure(String pdf) async {
+    Directory _path = await getApplicationDocumentsDirectory();
+    String _localPath = '${_path.path}${Platform.pathSeparator}Download';
+    final savedDir = Directory(_localPath);
+    bool hasExisted = await savedDir.exists();
+    if (!hasExisted) {
+      savedDir.create();
+    }
+    path = _localPath;
+    DownloaderCore core;
+    DownloaderUtils options;
+    options = DownloaderUtils(
+      progressCallback: (current, total) {
+        final progress = (current / total) * 100;
+        downloadProgress.value = progress;
+        update();
+      },
+      file: File('$path/loremipsum.pdf'),
+      progress: ProgressImplementation(),
+      onDone: () {
+        print('file downloaded');
+        OpenFile.open('$path/loremipsum.pdf');
+      },
+      deleteOnCancel: true,
+    );
+    core = await Flowder.download(
+      "https://cpcdiagnostics.bizzonit.com/public/$pdf",
+      options,
+    );
   }
 
   @override

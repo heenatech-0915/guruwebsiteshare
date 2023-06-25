@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppThemeData {
+
+  static Color primaryColor = const Color(0xff01ab86).withOpacity(0.9);
   //splash screen
   static const Color splashScreenColor = Color(0xffFFFDF5);
   //home
-  static const Color homeAppBarColor = Color(0xffFCB800);
+  static const Color homeAppBarColor = Color(0xff01ab86);
   //button Color
   static const Color buttonColor = Color(0xff333333);
   static const Color buttonTextColor = Color(0xffFFFFFF);

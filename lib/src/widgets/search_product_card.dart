@@ -53,7 +53,7 @@ class SearchProductCard extends StatelessWidget {
           },
           child: Column(
             children: [
-              Padding(
+/*              Padding(
                 padding: EdgeInsets.all(5.r),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -125,7 +125,7 @@ class SearchProductCard extends StatelessWidget {
                         : const SizedBox(),
                   ],
                 ),
-              ),
+              )*/
               SizedBox(
                 height: 18.h,
               ),
@@ -149,7 +149,7 @@ class SearchProductCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5.h),
-              Padding(
+/*              Padding(
                 padding: EdgeInsets.symmetric(horizontal: isMobile(context)?18.w:10.w),
                 child: Center(
                   child: double.parse(data.specialDiscount ?? "0") == 0.000
@@ -180,7 +180,7 @@ class SearchProductCard extends StatelessWidget {
                           ],
                         ),
                 ),
-              ),
+              )*/
               SizedBox(
                 height: 5.h,
               ),

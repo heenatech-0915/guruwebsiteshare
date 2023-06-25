@@ -8,7 +8,6 @@ import 'package:cpcdiagnostics_ecommerce/src/servers/network_service.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_tags.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
 import 'package:flutter/material.dart';
-
 import '../../data/local_data_helper.dart';
 import '../../utils/responsive.dart';
 import '../../widgets/loader/shimmer_order_history.dart';
@@ -47,7 +46,7 @@ class OrderHistory extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          AppTags.orderHistory.tr,
+          "Request History",
           style: AppThemeData.headerTextStyle_16,
         ),
       ): AppBar(
@@ -120,25 +119,25 @@ class OrderHistory extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Row(
+                                  /*  Row(
                                       children: [
-                                        Text(
+*//*                                        Text(
                                           "${AppTags.invoice.tr}: #",
                                           style:
                                           isMobile(context)? AppThemeData.orderHistoryTextStyle_12:AppThemeData.orderHistoryTextStyle_9Tab,
-                                        ), SelectableText(
+                                        )*//**//*SelectableText(
                                           orderHistoryController.orderListModel.data!.orders![index].orderCode.toString(),
                                           style:
                                           isMobile(context)? AppThemeData.orderHistoryTextStyle_12:AppThemeData.orderHistoryTextStyle_9Tab,
-                                        ),
+                                        )*//*
                                       ],
-                                    ),
+                                    ),*/
                                     Text(
-                                        "${AppTags.orderDate.tr}: ${orderHistoryController.orderListModel.data!.orders![index].date.toString()}",
+                                        "${"Requested Date"}: ${orderHistoryController.orderListModel.data!.orders![index].date.toString()}",
                                         style: isMobile(context)? AppThemeData.orderHistoryTextStyle_12:AppThemeData.orderHistoryTextStyle_9Tab),
-                                    Text(
+/*                                    Text(
                                         "${AppTags.amount.tr}: ${currencyConverterController.convertCurrency(orderHistoryController.orderListModel.data!.orders![index].totalPayable.toString())}",
-                                        style: isMobile(context)? AppThemeData.orderHistoryTextStyle_12:AppThemeData.orderHistoryTextStyle_9Tab),
+                                        style: isMobile(context)? AppThemeData.orderHistoryTextStyle_12:AppThemeData.orderHistoryTextStyle_9Tab)*/
                                   ],
                                 ),
                               ),
@@ -188,7 +187,7 @@ class OrderHistory extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Row(
+/*                                  Row(
                                     children: [
                                       orderStatus ==
                                               "unpaid"
@@ -272,7 +271,7 @@ class OrderHistory extends StatelessWidget {
                                             )
                                           : const SizedBox(),
                                     ],
-                                  ),
+                                  )*/
                                 ],
                               )
                             ],

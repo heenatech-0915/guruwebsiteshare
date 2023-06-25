@@ -1,3 +1,5 @@
+import 'package:cpcdiagnostics_ecommerce/src/data/local_data_helper.dart';
+
 class AddToCartListModel {
   AddToCartListModel({
     this.success,
@@ -40,6 +42,9 @@ class Data {
       });
     }
     trxId = json['trx_id'];
+    if(trxId!=null){
+      LocalDataHelper().saveCartTrxId(trxId!);
+    }
     calculations = json['calculations'] != null
         ? Calculations.fromJson(json['calculations'])
         : null;
@@ -140,14 +145,16 @@ class Carts {
       this.formattedDiscount,
       this.formattedSubTotal,
       this.minimumOrder,
-      this.stock});
+      this.stock,
+        this.sku
+      });
 
   Carts.fromJson(dynamic json) {
     id = json['id'] ?? 0;
     sellerId = json['seller_id'] ?? 0;
     productId = json['product_id'] ?? 0;
-    productName = json['product_name'] ?? "";
-    productImage = json['product_image'] ?? "";
+    productName = json['product']['product_name'] ?? "";
+    productImage = json['image_40x40'] ?? "";
     shopName = json['shop_name'] ?? "";
     shopImage = json['shop_image'] ?? "";
     variant = json['variant'] ?? "";
@@ -156,8 +163,9 @@ class Carts {
     formattedPrice = json['formatted_price'] ?? "";
     discount = json['discount'] ?? 0;
     subTotal = json['sub_total'];
-    minimumOrder = json['minimum_order_quantity'];
-    stock = json['stock'];
+    minimumOrder = json['product']['minimum_order_quantity'];
+    stock = json['current_stock'];
+    sku = json['product']['stock']!=null?json['product']['stock'][0]['sku'] : "";
     formattedDiscount = json['formatted_discount'] ?? "";
     formattedSubTotal = json['formatted_sub_total'] ?? "";
   }
@@ -178,6 +186,7 @@ class Carts {
   String? formattedSubTotal;
   int? minimumOrder;
   int? stock;
+  String? sku;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -199,5 +208,50 @@ class Carts {
     map['minimum_order_quantity'] = minimumOrder;
     map['stock'] = stock;
     return map;
+  }
+}
+
+class Stock {
+  int? id;
+  int? productId;
+  String? name;
+  String? sku;
+  int? currentStock;
+  String? stockImage;
+  int? discountPercentage;
+  String? image190x230;
+
+  Stock(
+      {this.id,
+        this.productId,
+        this.name,
+        this.sku,
+        this.currentStock,
+        this.stockImage,
+        this.discountPercentage,
+        this.image190x230});
+
+  Stock.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    productId = json['product_id'];
+    name = json['name'];
+    sku = json['sku'];
+    currentStock = json['current_stock'];
+    stockImage = json['stock_image'];
+    discountPercentage = json['discount_percentage'];
+    image190x230 = json['image_190x230'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['product_id'] = this.productId;
+    data['name'] = this.name;
+    data['sku'] = this.sku;
+    data['current_stock'] = this.currentStock;
+    data['stock_image'] = this.stockImage;
+    data['discount_percentage'] = this.discountPercentage;
+    data['image_190x230'] = this.image190x230;
+    return data;
   }
 }

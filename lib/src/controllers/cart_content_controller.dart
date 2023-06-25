@@ -1,11 +1,16 @@
+import 'package:cpcdiagnostics_ecommerce/src/controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 import 'package:cpcdiagnostics_ecommerce/src/models/add_to_cart_list_model.dart';
 import 'package:cpcdiagnostics_ecommerce/src/models/coupon_applied_list.dart';
 import 'package:cpcdiagnostics_ecommerce/src/servers/repository.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/analytics_helper.dart';
 import 'package:cpcdiagnostics_ecommerce/src/data/local_data_helper.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../_route/routes.dart';
 
 class CartContentController extends GetxController {
+
   final Rx<AddToCartListModel> _addToCartListModel = AddToCartListModel().obs;
   AddToCartListModel get addToCartListModel => _addToCartListModel.value;
   final _isLoading = true.obs;
@@ -20,8 +25,14 @@ class CartContentController extends GetxController {
   CouponAppliedList get appliedCouponList => _appliedCouponList.value;
   final _isAplyingCoupon = false.obs;
   bool get isAplyingCoupon => _isAplyingCoupon.value;
+  RxBool isAddingToCart = false.obs;
+  RxBool isBooking = false.obs;
+  RxString productBeingRemoved = "".obs;
+
 
   var couponCode = ''.obs;
+  DashboardController dashboardController = Get.find<DashboardController>();
+
 
   @override
   void onInit() {
@@ -37,6 +48,7 @@ class CartContentController extends GetxController {
       _isLoading(false);
     });
     update();
+    dashboardController.getAddToCartList();
   }
 
   Future addToCart(
@@ -49,11 +61,13 @@ class CartContentController extends GetxController {
         eventTitle: "AddToCart",
         additionalData: {
           "productId": productId,
-          
           "quantity": quantity,
           "variantsNames": variantsNames,
         });
     String? trxId = LocalDataHelper().getCartTrxId();
+    //q7ML8ZzuK8wxxxQouw7zD
+    print("trxId ---> $trxId");
+    isAddingToCart.value = true;
     if (trxId == null) {
       Repository()
           .addToCartWithOutTrxId(
@@ -62,7 +76,10 @@ class CartContentController extends GetxController {
             variantsIds: variantsIds,
             variantsNames: variantsNames,
           )
-          .then((value) => getCartList(isShowLoading: false));
+          .then((value){
+            getCartList(isShowLoading: false);
+            isAddingToCart.value = false;
+          });
     } else {
       Repository()
           .addToCartWithTrxId(
@@ -71,11 +88,15 @@ class CartContentController extends GetxController {
               variantsIds: variantsIds,
               variantsNames: variantsNames,
               trxId: trxId)
-          .then((value) => getCartList(isShowLoading: false));
+          .then((value){
+            getCartList(isShowLoading: false);
+            isAddingToCart.value = false;
+          });
     }
   }
 
   Future deleteAProductFromCart({required String productId}) async {
+    productBeingRemoved.value = productId;
     await Repository().deleteCartProduct(productId: productId).then((value) {
       getCartList(isShowLoading: false);
        AnalyticsHelper().setAnalyticsData(
@@ -83,9 +104,10 @@ class CartContentController extends GetxController {
           eventTitle: "DeleteFromCart",
           additionalData: {
             "productId": productId,
-            
-          
           });
+       productBeingRemoved.value = "";
+    }).whenComplete((){
+      productBeingRemoved.value = "";
     });
   }
 
@@ -118,5 +140,14 @@ class CartContentController extends GetxController {
       getAppliedCouponList();
       _isAplyingCoupon(false);
     });
+  }
+
+  Future order() async {
+    isBooking.value = true;
+    await Repository().orderProducts().then((value){
+      isBooking.value = false;
+      dashboardController.changeTabIndex(0);
+      LocalDataHelper().box.remove("trxId");
+    }).whenComplete(() => isBooking.value=false);
   }
 }

@@ -468,6 +468,46 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
                   //Calculate Card
                   Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.r,vertical: 20.r),
+                    child: InkWell(
+                      onTap: () async {
+                        if (shippingAddressModel
+                            .data!.addresses!.isNotEmpty ||
+                            isSelectPickup) {
+                          await postConfirmOrder().then(
+                                (value) => Get.toNamed(
+                              Routes.paymentScreen,
+                              parameters: {
+                                'trxId': LocalDataHelper()
+                                    .getCartTrxId() ??
+                                    "",
+                                'token': LocalDataHelper()
+                                    .getUserToken() ??
+                                    ""
+                              },
+                            ),
+                          );
+                        } else {
+                          Get.snackbar(
+                            AppTags.selectAddress.tr,
+                            AppTags.pleaseSelectBullingOrPickupAddress
+                                .tr,
+                            snackPosition: SnackPosition.BOTTOM,
+                            duration: const Duration(seconds: 3),
+                            colorText: Colors.white,
+                            backgroundColor: Colors.black,
+                            forwardAnimationCurve: Curves.decelerate,
+                            shouldIconPulse: false,
+                          );
+                        }
+                      },
+                      child: const ButtonWidget(
+                        buttonTittle: "Book Now",
+                      ),
+                    ),
+                  )
+
+/*                  Padding(
                     padding: EdgeInsets.only(right: 15.w, left: 15.w, bottom: 15.h),
                     child: Container(
                       decoration: BoxDecoration(
@@ -618,7 +658,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         ),
                       ),
                     ),
-                  ),
+                  )*/,
                 ],
               ),
             ),
@@ -1680,7 +1720,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 phoneNo:
                                     "+$phoneCode ${phoneController.text.toString()}",
                                 countryId: _selectedCountry,
-                                stateId: _selectedState,
+                                stateId: 20,//_selectedState,
                                 cityId: _selectedCity,
                                 postalCode:
                                     postalCodeController.text.toString(),

@@ -44,6 +44,10 @@ class Data {
   int? minimumOrderQuantity;
   bool? isFavourite;
   bool? isNew;
+  String? sku;
+  String? description;
+  String ?tags;
+  int? ordering;
 
   Data({
     this.id,
@@ -64,6 +68,10 @@ class Data {
     this.minimumOrderQuantity,
     this.isFavourite,
     this.isNew,
+    this.sku,
+    this.description,
+    this.tags,
+    this.ordering
   });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -85,6 +93,13 @@ class Data {
     minimumOrderQuantity = json['minimum_order_quantity'];
     isFavourite = json['is_favourite'];
     isNew = json['is_new'];
+    sku = json['sku'] ?? "";
+    description = json["description"] ?? "";
+    tags = json["tags"] ?? "";
+    ordering = json['ordering'] ?? 0;
+    if(tags!.isNotEmpty && tags!.contains(',')) {
+      tags = tags! .substring(tags!.indexOf(','), tags!.length);
+    }
   }
 
   Map<String, dynamic> toJson() {

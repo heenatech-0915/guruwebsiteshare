@@ -107,7 +107,7 @@ class InvoiceScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        DataColumn(
+                        /*DataColumn(
                           label: Text(
                             AppTags.total.tr,
                             style:  TextStyle(
@@ -115,7 +115,7 @@ class InvoiceScreen extends StatelessWidget {
                               fontFamily: "Poppins Medium",
                             ),
                           ),
-                        ),
+                        ),*/
                       ],
                       rows: invoiceScreenController.trackingOrderModel!.data!.order!.orderDetails!
                           .map(
@@ -157,7 +157,7 @@ class InvoiceScreen extends StatelessWidget {
                                 textAlign: TextAlign.start,
                               ),
                             ),
-                            DataCell(
+                            /*DataCell(
                               Text(
                                 currencyConverterController
                                     .convertCurrency(invoice
@@ -168,7 +168,7 @@ class InvoiceScreen extends StatelessWidget {
                                   color: Colors.black,
                                 ),
                               ),
-                            ),
+                            )*/
                           ],
                         ),
                       ).toList(),
@@ -361,7 +361,7 @@ class InvoiceScreen extends StatelessWidget {
             SizedBox(
               height: 15.h,
             ),
-            Container(
+/*            Container(
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -493,9 +493,9 @@ class InvoiceScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            )*/
             const Spacer(),
-            SizedBox(
+/*            SizedBox(
               width: double.infinity,
               height: 48.h,
               child: ElevatedButton(
@@ -510,7 +510,7 @@ class InvoiceScreen extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppThemeData.buttonColor,
+                primary: AppThemeData.buttonColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.r),
                   ),
@@ -523,7 +523,7 @@ class InvoiceScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            )*/
             SizedBox(
               height: 30.h,
             ),

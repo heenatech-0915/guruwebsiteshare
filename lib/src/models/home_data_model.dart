@@ -365,7 +365,7 @@ class BestShops {
       this.rating,
       this.totalReviews,
       this.shopName,
-        this.isFollowed,
+      this.isFollowed,
       this.products});
 
   BestShops.fromJson(Map<String, dynamic> json) {
@@ -412,17 +412,16 @@ class ExpressShops {
   String? shopName;
   bool? isFollowed;
 
-
-  ExpressShops(
-      {this.id,
-      this.slug,
-      this.logo,
-      this.banner,
-      this.rating,
-      this.totalReviews,
-      this.shopName,
-        this.isFollowed,
-      });
+  ExpressShops({
+    this.id,
+    this.slug,
+    this.logo,
+    this.banner,
+    this.rating,
+    this.totalReviews,
+    this.shopName,
+    this.isFollowed,
+  });
 
   ExpressShops.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -939,7 +938,7 @@ class Banners {
   String? actionTo;
   String? actionId;
 
-  Banners({this.thumbnail, this.actionTo,this.actionType,this.actionId});
+  Banners({this.thumbnail, this.actionTo, this.actionType, this.actionId});
 
   Banners.fromJson(Map<String, dynamic> json) {
     thumbnail = json['thumbnail'];
@@ -1350,17 +1349,17 @@ class FeaturedShops {
   List<Products>? products;
   bool? isFollowed;
 
-  FeaturedShops(
-      {this.id,
-      this.slug,
-      this.logo,
-      this.banner,
-      this.rating,
-      this.totalReviews,
-      this.shopName,
-      this.products,
-        this.isFollowed,
-      });
+  FeaturedShops({
+    this.id,
+    this.slug,
+    this.logo,
+    this.banner,
+    this.rating,
+    this.totalReviews,
+    this.shopName,
+    this.products,
+    this.isFollowed,
+  });
 
   FeaturedShops.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -29,13 +29,13 @@ class ProfileWithoutLoginScreen extends StatelessWidget {
             padding: EdgeInsets.only(right: 21.w),
             child: Row(
               children: [
-                InkWell(
+                /*InkWell(
                   onTap: () {
                     Get.toNamed(Routes.trackingOrder);
                   },
                   child:
                       SvgPicture.asset("assets/icons/location_profile_wl.svg"),
-                ),
+                ),*/
                 SizedBox(
                   width: 15.h,
                 ),
@@ -98,7 +98,7 @@ class ProfileWithoutLoginScreen extends StatelessWidget {
                       Get.toNamed(Routes.logIn);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:  AppThemeData.buttonShadowColor,
+                primary:  AppThemeData.buttonShadowColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -126,7 +126,7 @@ class ProfileWithoutLoginScreen extends StatelessWidget {
                       Get.toNamed(Routes.signUp);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppThemeData.buttonShadowColor,
+                primary: AppThemeData.buttonShadowColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r),
                       ),
@@ -147,24 +147,6 @@ class ProfileWithoutLoginScreen extends StatelessWidget {
             ),
             SizedBox(
               height: 30.h,
-            ),
-            InkWell(
-              onTap: () {
-                Get.toNamed(Routes.dashboardScreen);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset("assets/icons/arrow_back.svg",height: 10.h,width: 10.w,),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    AppTags.backToShopping.tr,
-                    style: isMobile(context)? AppThemeData.backToHomeTextStyle_12:AppThemeData.categoryTitleTextStyle_9Tab,
-                  ),
-                ],
-              ),
             ),
           ],
         ),

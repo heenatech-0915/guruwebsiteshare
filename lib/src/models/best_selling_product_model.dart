@@ -48,6 +48,7 @@ class Data {
     this.isNew,
     this.minimumOrderQuantity,
     this.isFavourite,
+    this.sku
   });
 
   Data.fromJson(dynamic json) {
@@ -69,6 +70,7 @@ class Data {
     isNew = json['is_new'];
     minimumOrderQuantity = json['minimum_order_quantity'];
     isFavourite = json['is_favourite'];
+    sku = json['sku'] ?? "";
   }
   int? id;
   String? slug;
@@ -88,6 +90,7 @@ class Data {
   bool? isNew;
   int? minimumOrderQuantity;
   bool? isFavourite;
+  String? sku;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

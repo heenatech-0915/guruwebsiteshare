@@ -7,7 +7,6 @@ import 'package:cpcdiagnostics_ecommerce/src/utils/app_tags.dart';
 import 'package:cpcdiagnostics_ecommerce/src/data/local_data_helper.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
 import 'package:flutter/material.dart';
-
 import '../../../utils/responsive.dart';
 import '../../profile/order_history_screen.dart';
 
@@ -112,7 +111,7 @@ class PaymentConfirmationScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppThemeData.headlineTextColor,
+                primary: AppThemeData.headlineTextColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.r),
                           ),
@@ -142,7 +141,7 @@ class PaymentConfirmationScreen extends StatelessWidget {
                           Get.offAllNamed(Routes.dashboardScreen);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppThemeData.headlineTextColor,
+                primary: AppThemeData.headlineTextColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.r),
                           ),
@@ -170,7 +169,7 @@ class PaymentConfirmationScreen extends StatelessWidget {
                   LocalDataHelper().box.remove("trxId");
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppThemeData.headlineTextColor,
+                primary: AppThemeData.headlineTextColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.r),
                   ),

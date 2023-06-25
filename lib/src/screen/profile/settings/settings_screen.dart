@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cpcdiagnostics_ecommerce/src/screen/profile/about_us.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -156,7 +157,7 @@ class Settings extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+           /* SizedBox(
               height: 10.h,
             ),
             Obx(
@@ -200,7 +201,7 @@ class Settings extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            ),*/
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: const Divider(
@@ -231,7 +232,7 @@ class Settings extends StatelessWidget {
               ),
             ),
 
-            Padding(
+/*            Padding(
               padding: EdgeInsets.symmetric(horizontal: isMobile(context)? 0.w:10.w,vertical: isMobile(context)? 0.h:8.h),
               child: InkWell(
                 onTap: () {
@@ -248,7 +249,7 @@ class Settings extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            )*/
             Padding(
               padding: EdgeInsets.symmetric(horizontal: isMobile(context)? 0.w:10.w,vertical: isMobile(context)? 0.h:8.h),
               child: InkWell(
@@ -334,7 +335,7 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+/*            Padding(
               padding: EdgeInsets.symmetric(horizontal: isMobile(context)? 0.w:10.w,vertical: isMobile(context)? 0.h:8.h),
               child: InkWell(
                 onTap: () {
@@ -362,23 +363,12 @@ class Settings extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            )*/
             Padding(
               padding: EdgeInsets.symmetric(horizontal: isMobile(context)? 0.w:10.w,vertical: isMobile(context)? 0.h:8.h),
               child: InkWell(
                 onTap: () {
-                  Get.toNamed(
-                    Routes.wvScreen,
-                    parameters: {
-                      'url':
-                          LocalDataHelper().getConfigData().data!.pages![6].link!,
-                      'title': LocalDataHelper()
-                          .getConfigData()
-                          .data!
-                          .pages![6]
-                          .title!,
-                    },
-                  );
+                  Get.to(const ContactUs());
                 },
                 child: ListTile(
                   title: Text(

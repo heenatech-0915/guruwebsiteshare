@@ -26,6 +26,7 @@ import '../screen/home/category/product_category_screen.dart';
 import '../screen/home/notification_screen.dart';
 import '../screen/home/product_details/product_details_screen.dart';
 
+import '../screen/home/product_details/reagent_details_page.dart';
 import '../screen/home/search_product_screen.dart';
 import '../screen/profile/wallet/my_wallet_recharge_screen.dart';
 import '../screen/profile/order_history_screen.dart';
@@ -73,7 +74,7 @@ class Routes {
     ),
     GetPage(
       name: splashScreen,
-      page: () => const SplashScreen(),
+      page: () => SplashScreen(),
       binding: SplashBinding(),
     ),
     GetPage(
@@ -93,6 +94,9 @@ class Routes {
     GetPage(
       name: detailsPage,
       page: () => DetailsPage(),
+    ),GetPage(
+      name: "/ReagentDetailsPage",
+      page: () => ReagentDetailsPage(),
     ),
     GetPage(
       name: paymentScreen,

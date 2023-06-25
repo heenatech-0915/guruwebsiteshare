@@ -19,8 +19,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   firebase_analytics: 
-  firebase_auth: 
-  firebase_core: 
+  firebase_auth:
+  firebase_core: ^2.2.0
+  firebase_messaging: ^14.1.0
   flutter:
     sdk: flutter
   flutter_countdown_timer: ^4.1.0
@@ -67,12 +68,26 @@ dependencies:
   shimmer: ^2.0.0
   sign_in_with_apple: ^4.1.0
   store_redirect: ^2.0.1
-  syncfusion_flutter_pdfviewer: ^20.2.39-beta
+  syncfusion_flutter_pdfviewer: ^20.2.50-beta
   the_apple_sign_in: ^1.1.1
   timelines: ^0.1.0
-  url_launcher: ^6.0.3
+  url_launcher: ^6.1.7
   photo_view: ^0.14.0
   uri_to_file: ^0.2.0
+  masonry_grid: ^1.0.0
+  flutter_staggered_animations: ^1.1.1
+  double_back_to_close: ^2.0.0
+  flowder: ^0.2.0
+  flutter_form_builder: ^7.7.0
+  whatsapp_share2: ^2.0.2
+  show_up_animation: ^2.0.0
+  percent_indicator: ^4.2.2
+  html:
+  dropdown_button2: ^1.9.2
+  flutter_share_me:
+  share: ^2.0.4
+  firebase_dynamic_links:
+
 
 dev_dependencies:
   build_runner: ^2.1.7

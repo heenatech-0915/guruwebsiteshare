@@ -79,10 +79,20 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                         Text(
                           cart.productName.toString(),
                           style: isMobile(context)
                               ? AppThemeData.labelTextStyle_16
+                              : AppThemeData.todayDealDiscountPriceStyle,
+                          textScaleFactor: 1.0,
+                          maxLines: 2,
+                        ),
+
+                        Text(
+                          cart.sku??"",
+                          style: isMobile(context)
+                              ? AppThemeData.labelTextStyle_16.copyWith(color: Colors.black.withOpacity(0.7,),fontSize: 13.sp)
                               : AppThemeData.todayDealDiscountPriceStyle,
                           textScaleFactor: 1.0,
                           maxLines: 2,
@@ -93,13 +103,13 @@ class CartItem extends StatelessWidget {
                               ? AppThemeData.hintTextStyle_13
                               : AppThemeData.hintTextStyle_10Tab,
                         ),
-                        Text(
+                        /*Text(
                           currencyConverterController
                               .convertCurrency(cart.formattedPrice.toString()),
                           style: isMobile(context)
                               ? AppThemeData.priceTextStyle_14
                               : AppThemeData.titleTextStyle_11Tab,
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -195,8 +205,7 @@ class CartItem extends StatelessWidget {
                                 BoxShadow(
                                     spreadRadius: 3,
                                     blurRadius: 5,
-                                    color: AppThemeData.boxShadowColor
-                                        .withOpacity(0.1),
+                                    color: AppThemeData.boxShadowColor.withOpacity(0.1),
                                     offset: const Offset(0, 0))
                               ],
                             ),
@@ -216,8 +225,45 @@ class CartItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
-              ],
+                ),
+
+               Obx((){
+                 return _cartController.productBeingRemoved.value!=cart.id.toString() ?Padding(
+                   padding: EdgeInsets.only(left: 10.w),
+                   child: IconButton(
+                     icon: Stack(
+                       children: const <Widget>[
+                         Positioned(
+                           left: 1.0,
+                           top: 2.0,
+                           child: Icon(
+                               Icons.delete_forever_sharp,
+                               color: Colors.black12
+                           ),
+                         ),
+                         Icon(
+                             Icons.delete_forever_sharp,
+                             color: Colors.red
+                         ),
+                       ],
+                     ),
+                     onPressed: () {
+                       _cartController.deleteAProductFromCart(
+                           productId: cart.id.toString());
+                     },
+                   ),
+                 ):Padding(
+                   padding: EdgeInsets.only(left: 10.w),
+                   child: SizedBox.square(
+                     dimension: 30.w,
+                     child: const CircularProgressIndicator(
+                         strokeWidth: 1,
+                         color: Colors.red,
+                     ),
+                   ),
+                 );
+
+               })],
             ),
           ),
         ),

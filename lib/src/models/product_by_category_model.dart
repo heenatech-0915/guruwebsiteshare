@@ -46,12 +46,17 @@ class CategoryProductData {
     this.reward,
     this.minimumOrderQuantity,
     this.isNew,
+    this.sku,
+    this.linkedProducts,
+    this.instrumentType,
+    this.description
   });
 
   CategoryProductData.fromJson(dynamic json) {
     id = json['id'];
     slug = json['slug'];
     title = json['title'];
+
     shortDescription = json['short_description'];
     specialDiscountType = json['special_discount_type'];
     specialDiscount = json['special_discount'];
@@ -65,7 +70,23 @@ class CategoryProductData {
     reward = json['reward'];
     minimumOrderQuantity = json['minimum_order_quantity'];
     isNew = json['is_new'];
+    sku = json['sku'] ?? "";
+    brand = json['brand'] ?? "";
+    tags = json['tags'] ?? "";
+    ordering = json['ordering'] ?? 0;
+    if(json['linked_products'] is List){
+      List<dynamic> products = json['linked_products'];
+        for (var element in products) {
+          linkedProducts!.add(CategoryProductData.fromJson(element));
+        }
+    }
+    instrumentType = json['instruments_types'] ?? json['instruments_types'];
+    description = json['description'] ?? "";
+    if(tags!.isNotEmpty && tags!.contains(',')){
+      tags = tags!.substring(tags!.indexOf(',')+1,tags!.length);
+    }
   }
+
   int? id;
   String? slug;
   String? title;
@@ -82,6 +103,13 @@ class CategoryProductData {
   dynamic reward;
   int? minimumOrderQuantity;
   bool? isNew;
+  String? sku;
+  String? brand;
+  String? tags;
+  int? ordering;
+  List<CategoryProductData> ?linkedProducts = [];
+  String? instrumentType;
+  String? description;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

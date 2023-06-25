@@ -1,3 +1,4 @@
+import 'package:cpcdiagnostics_ecommerce/src/controllers/profile_content_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -10,6 +11,7 @@ import 'package:cpcdiagnostics_ecommerce/src/screen/dashboard/dashboard_screen.d
 import 'package:cpcdiagnostics_ecommerce/src/servers/repository.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/constants.dart';
 import '../data/local_data_helper.dart';
+import 'package:cpcdiagnostics_ecommerce/src/utils/validators.dart';
 
 class AuthController extends GetxController {
   final GoogleSignIn _googleSign = GoogleSignIn();
@@ -21,6 +23,9 @@ class AuthController extends GetxController {
 
   final _isLoggingIn = false.obs;
   bool get isLoggingIn => _isLoggingIn.value;
+  RxInt userRole = 3.obs;
+  RxString role = ''.obs;
+  bool ?customRoute;
 
   //login screen
   TextEditingController? emailController;
@@ -28,6 +33,7 @@ class AuthController extends GetxController {
   var isVisible = true.obs;
   var isValue = LocalDataHelper().getRememberPass() != null ? true.obs : false.obs;
   bool isLoading = false;
+  final ProfileContentController _profileContentController = Get.put(ProfileContentController());
 
   isValueUpdate(value){
     isValue.value = value!;
@@ -44,6 +50,8 @@ class AuthController extends GetxController {
   var confirmPasswordController = TextEditingController();
   var passwordVisible = true.obs;
   var confirmPasswordVisible = true.obs;
+  var companyNameController = TextEditingController();
+  var phoneController = TextEditingController();
 
   isVisiblePasswordUpdate(){
     passwordVisible.value = !passwordVisible.value;
@@ -60,6 +68,17 @@ class AuthController extends GetxController {
         TextEditingController(text: LocalDataHelper().getRememberMail() ?? "");
     passwordController =
         TextEditingController(text: LocalDataHelper().getRememberPass() ?? "");
+    userRole.stream.listen((event) {
+      if(event == 0){
+        role.value = "Customer";
+      }
+      else if(event == 1){
+        role.value = "Employee";
+      }
+      else if(event == 2){
+        role.value = "Channel Partner";
+      }
+    });
     super.onInit();
   }
 
@@ -77,9 +96,17 @@ class AuthController extends GetxController {
     _isLoggingIn(true);
     await Repository().loginWithEmailPassword(email, password).then(
       (value) {
-        if (value) Get.offAll(() => DashboardScreen());
-        _isLoggingIn(false);
-      },
+        if (value && customRoute==null){
+          _isLoggingIn(false);
+           Get.offAll(() => DashboardScreen());
+        }
+        else{
+          _profileContentController.getUserData();
+          _profileContentController.getProfileData();
+          _isLoggingIn(false);
+          Get.back();
+         }
+        },
     );
   }
 
@@ -230,12 +257,32 @@ class AuthController extends GetxController {
   }
 
   Future signUp(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String password,
-      required String confirmPassword}) async {
+      { required String firstName,
+        required String lastName,
+        required String email,
+        required String password,
+        required String confirmPassword,
+        String companyName="",
+        required String phone,
+        required int userRole
+      }) async {
     _isLoggingIn(true);
+    if(userRole==3){
+      showShortToast("User role is required", bgColor: Colors.red);
+      _isLoggingIn(false);
+      return;
+    }
+    if(phone.isEmpty){
+       showShortToast("Phone number is required", bgColor: Colors.red);
+       _isLoggingIn(false);
+       return;
+    }
+     if(companyName.isEmpty){
+        showShortToast("Company name is required", bgColor: Colors.red);
+        _isLoggingIn(false);
+        return;
+     }
+     print(userRole);
     await Repository()
         .signUp(
       firstName: firstName,
@@ -243,9 +290,13 @@ class AuthController extends GetxController {
       email: email,
       password: password,
       confirmPassword: confirmPassword,
+      companyName: companyName,
+      phone: phone,
+      userRole: userRole
     )
         .then((value) {
       _isLoggingIn(false);
     });
   }
+
 }

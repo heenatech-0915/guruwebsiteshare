@@ -86,7 +86,7 @@ class RechargeConfirmationScreen extends StatelessWidget {
                           Get.offAllNamed(Routes.dashboardScreen);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppThemeData.buttonShadowColor,
+                primary: AppThemeData.buttonShadowColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),

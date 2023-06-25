@@ -29,7 +29,7 @@ class EmptyCartScreen extends StatelessWidget {
           height: 20.h,
         ),
         Text(
-          AppTags.emptyCart.tr,
+          "Your Inquiry list is empty",
           style: TextStyle(
             fontSize: 16.sp,
             fontFamily: "Poppins Medium",
@@ -42,7 +42,7 @@ class EmptyCartScreen extends StatelessWidget {
         SizedBox(
           width: 172.w,
           child: Text(
-            AppTags.emptyCartText.tr,
+            "Add products to Inquiry list",
             style: isMobile(context)?AppThemeData.dateTextStyle_12:AppThemeData.dateTextStyle_9Tab,
             textAlign: TextAlign.center,
           ),
@@ -61,7 +61,7 @@ class EmptyCartScreen extends StatelessWidget {
                 homeScreenController.changeTabIndex(0);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppThemeData.headlineTextColor,
+                primary: AppThemeData.headlineTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.r),
                 ),
@@ -69,7 +69,7 @@ class EmptyCartScreen extends StatelessWidget {
                 shadowColor: AppThemeData.headlineTextColor,
               ),
               child: Text(
-                AppTags.continueShopping.tr,
+                "Continue Browsing",
                 style: isMobile(context)? AppThemeData.buttonTextStyle_14:AppThemeData.buttonTextStyle_11Tab
               ),
             ),

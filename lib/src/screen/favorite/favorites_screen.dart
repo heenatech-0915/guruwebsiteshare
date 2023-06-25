@@ -54,7 +54,6 @@ class FavoritesScreen extends StatelessWidget {
                               ),
                               tabs: [
                                 Tab(text: AppTags.products.tr),
-                                Tab(text: AppTags.store.tr),
                               ],
                             ),
                           ),

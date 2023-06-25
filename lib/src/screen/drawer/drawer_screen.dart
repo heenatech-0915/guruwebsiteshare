@@ -34,10 +34,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
       "icon": "d_user",
       "title": AppTags.account.tr,
     },
-    {
+   /* {
       "icon": "d_places",
       "title": AppTags.trackOrder.tr,
-    },
+    },*/
     {
       "icon": "d_notifications",
       "title": AppTags.notification.tr,
@@ -113,16 +113,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             homeScreenController.changeTabIndex(4);
                           }
                           if (index == 2) {
-                            Get.toNamed(Routes.trackingOrder);
-                          }
-                          if (index == 3) {
+                            //Get.toNamed(Routes.trackingOrder);
                             Get.toNamed(Routes.notificationContent);
                           }
-                          if (index == 4) {
+                          if (index == 3) {
                             Get.toNamed(Routes.settings);
                           }
-                          if (index == 5) {
-                            
+                          if (index == 4) {
                             AuthController.authInstance.signOut();
                           }
                           Scaffold.of(context).closeDrawer();

@@ -14,6 +14,8 @@ class HomeScreenController extends GetxController {
   bool isFavourite = false;
   Rx<HomeDataModel> homeDataModel = HomeDataModel().obs;
   var isLoadingFromServer = false.obs;
+  RxBool filterByName = true.obs;
+  RxInt filterValue = 1.obs;
 
   Future<HomeDataModel> getHomeScreenData() async {
     HomeDataModel? data = LocalDataHelper().getHomeData();
@@ -33,6 +35,10 @@ class HomeScreenController extends GetxController {
     isLoadingFromServer(true);
     return await Repository().getHomeScreenData().then(
       (homeData) {
+       homeData.data?.forEach((element) {
+         element.popularCategories?.forEach((element) {
+         });
+       });
         homeDataModel.value = homeData;
         LocalDataHelper().saveHomeContent(homeData);
         isLoadingFromServer(false);
@@ -49,6 +55,7 @@ class HomeScreenController extends GetxController {
   void onInit() {
     super.onInit();
     getHomeScreenData();
+    print(LocalDataHelper().getUserToken());
   }
 
   isVisibleUpdate(bool value) {

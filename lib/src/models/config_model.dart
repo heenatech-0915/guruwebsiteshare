@@ -66,7 +66,9 @@ class Data {
     if (json['currencies'] != null) {
       currencies = <Currencies>[];
       json['currencies'].forEach((v) {
-        currencies!.add(Currencies.fromJson(v));
+        if(Currencies.fromJson(v).name=="INR") {
+          currencies!.add(Currencies.fromJson(v));
+        }
       });
     }
     if (json['pages'] != null) {

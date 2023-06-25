@@ -7,7 +7,6 @@ import 'package:cpcdiagnostics_ecommerce/src/controllers/currency_converter_cont
 import 'package:cpcdiagnostics_ecommerce/src/controllers/voucher_controller.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_tags.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
-
 import '../../utils/responsive.dart';
 import '../../widgets/loader/shimmer_voucher_list.dart';
 
@@ -155,7 +154,7 @@ class _VoucherListState extends State<VoucherList> {
                                                 );
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                backgroundColor: AppThemeData.voucherMultipleColor[
+                primary: AppThemeData.voucherMultipleColor[
                                                     index % AppThemeData.voucherMultipleColor.length],
                                                 elevation: 6,
                                                 shape: RoundedRectangleBorder(

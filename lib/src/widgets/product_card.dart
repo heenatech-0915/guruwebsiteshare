@@ -162,7 +162,7 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5.h),
-              Padding(
+/*              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 18.w),
                 child: Center(
                   child: double.parse(dataModel.data![index].specialDiscount) ==
@@ -194,7 +194,7 @@ class ProductCard extends StatelessWidget {
                           ],
                         ),
                 ),
-              ),
+              )*/
               SizedBox(
                 height: 5.h,
               ),

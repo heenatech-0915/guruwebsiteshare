@@ -178,6 +178,7 @@ class SubCategories {
   String? banner;
   String? title;
   String? image;
+  int? count;
   List<ChildCategories>? childCategories;
 
   SubCategories(
@@ -188,6 +189,7 @@ class SubCategories {
       this.banner,
       this.title,
       this.image,
+      this.count,
       this.childCategories});
 
   SubCategories.fromJson(Map<String, dynamic> json) {
@@ -198,6 +200,7 @@ class SubCategories {
     banner = json['banner'];
     title = json['title'];
     image = json['image'];
+    count = json['count'];
     if (json['child_categories'] != null) {
       childCategories = <ChildCategories>[];
       json['child_categories'].forEach((v) {

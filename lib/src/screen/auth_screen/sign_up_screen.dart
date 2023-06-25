@@ -10,7 +10,6 @@ import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:cpcdiagnostics_ecommerce/src/widgets/button_widget.dart';
-
 import '../../servers/social_auth_service.dart';
 import '../../utils/responsive.dart';
 import '../../widgets/loader/loader_widget.dart';
@@ -109,6 +108,16 @@ class SignupScreen extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
+            LoginEditTextField(
+              myController: authController.phoneController,
+              keyboardType: TextInputType.number,
+              hintText: AppTags.phone.tr,
+              fieldIcon: Icons.phone,
+              myobscureText: false,
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
             Obx(() => LoginEditTextField(
               myController: authController.passwordControllers,
               keyboardType: TextInputType.text,
@@ -127,7 +136,6 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
             ),),
-
             SizedBox(
               height: 5.h,
             ),
@@ -151,9 +159,89 @@ class SignupScreen extends StatelessWidget {
               ),
             )),
 
+            SizedBox(height: 5.h),
+
+            LoginEditTextField(
+              myController: authController.companyNameController,
+              keyboardType: TextInputType.text,
+              hintText: "Company Name".tr,
+              fieldIcon: Icons.location_city,
+              myobscureText: false,
+            ),
+
+
+            Padding(
+              padding: EdgeInsets.only(
+                  left: 15.w,
+                  right: 15.w,
+                  top: 10.h),
+              child: DropdownButtonFormField<int>(
+                  decoration: dropDownDecoration(),
+                  elevation: 30,
+                  borderRadius: BorderRadius.circular(10.r),
+                  value: authController.userRole.value,
+                  items: [
+
+                     DropdownMenuItem(
+                        value: 3,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10.w),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.person_pin_rounded,color: Colors.grey,size: 16,),
+                              SizedBox(width: 15.w),
+                              Text(
+                                  'Choose role',
+                                  style: AppThemeData.hintTextStyle_13,
+                              ),
+                            ],
+                          ),
+                        )
+                    ),
+
+                     DropdownMenuItem(
+                        value: 0,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 35.w),
+                          child: Text(
+                              'Customer',
+                              style: AppThemeData.titleTextStyle_13,
+                          ),
+                        )
+                    ),
+
+                    DropdownMenuItem(
+                        value: 1,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 35.w),
+                          child: Text(
+                              'Employee',
+                              style: AppThemeData.titleTextStyle_13,
+                          ),
+                        )
+                    ),
+
+                    DropdownMenuItem(
+                        value: 2,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 35.w),
+                          child: Text(
+                              'Channel Partner',
+                              style: AppThemeData.titleTextStyle_13,
+                          ),
+                        )
+                    ),
+
+                  ],
+                  onChanged: (v){
+                    authController.userRole.value=v!;
+                  }),
+            ),
+
             SizedBox(
               height: 34.h,
             ),
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: InkWell(
@@ -164,6 +252,9 @@ class SignupScreen extends StatelessWidget {
                     email: authController.emailControllers.text,
                     password: authController.passwordControllers.text,
                     confirmPassword: authController.confirmPasswordController.text,
+                    companyName: authController.companyNameController.text,
+                    phone: authController.phoneController.text,
+                    userRole: authController.userRole.value
                   );
                 },
                 child: ButtonWidget(buttonTittle: AppTags.signUp.tr),
@@ -171,24 +262,6 @@ class SignupScreen extends StatelessWidget {
             ),
             SizedBox(
               height: 20.h,
-            ),
-            InkWell(
-              onTap: () {
-                Get.toNamed(Routes.dashboardScreen);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset("assets/icons/arrow_back.svg"),
-                  SizedBox(
-                    width: 5.h,
-                  ),
-                  Text(
-                    AppTags.backToShopping.tr,
-                    style: isMobile(context)? AppThemeData.categoryTitleTextStyle_12:AppThemeData.categoryTitleTextStyle_9Tab,
-                  ),
-                ],
-              ),
             ),
             SizedBox(
               height: 20.h,
@@ -339,5 +412,31 @@ class SignupScreen extends StatelessWidget {
       ],
     );
   }
+
+  InputDecoration dropDownDecoration(){
+    return InputDecoration(
+        contentPadding: EdgeInsets.all(10.w),
+        enabledBorder:  OutlineInputBorder( //<-- SEE HERE
+            borderSide: const BorderSide(color: Colors.white10, width: 2),
+            borderRadius: BorderRadius.circular(10)
+        ),
+        disabledBorder: OutlineInputBorder( //<-- SEE HERE
+            borderSide: const BorderSide(color: Colors.white10, width: 2),
+            borderRadius: BorderRadius.circular(10)
+        ),
+        focusedBorder: OutlineInputBorder( //<-- SEE HERE
+            borderSide: const BorderSide(color: Colors.white10, width: 2),
+            borderRadius: BorderRadius.circular(10)
+        ),
+        border: OutlineInputBorder( //<-- SEE HERE
+            borderSide: const BorderSide(color: Colors.white10, width: 2),
+            borderRadius: BorderRadius.circular(10)
+        ),
+        filled: true,
+        isDense: true,
+        hintStyle: const TextStyle(color: Colors.grey),
+        fillColor: Colors.white);
+  }
+
 }
 

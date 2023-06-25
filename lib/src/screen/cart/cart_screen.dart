@@ -1,8 +1,9 @@
+import 'package:cpcdiagnostics_ecommerce/src/data/local_data_helper.dart';
+import 'package:cpcdiagnostics_ecommerce/src/screen/auth_screen/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:cpcdiagnostics_ecommerce/src/controllers/cart_content_controller.dart';
 import 'package:cpcdiagnostics_ecommerce/src/controllers/currency_converter_controller.dart';
-import 'package:cpcdiagnostics_ecommerce/src/utils/app_tags.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:cpcdiagnostics_ecommerce/src/widgets/button_widget.dart';
@@ -11,7 +12,6 @@ import 'package:cpcdiagnostics_ecommerce/src/widgets/cart_item.dart';
 import '../../models/add_to_cart_list_model.dart';
 import '../../utils/responsive.dart';
 import '../../widgets/loader/shimmer_cart_content.dart';
-import 'check_out_screen.dart';
 import 'empty_cart_screen.dart';
 
 class CartScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _CartScreenState extends State<CartScreen> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          AppTags.myCart.tr,
+          "Inquiry List",
           style: isMobile(context)? AppThemeData.headerTextStyle_16:AppThemeData.headerTextStyle_14,
         ),
       ),
@@ -76,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
                     padding:  EdgeInsets.symmetric(horizontal: 15.h),
                     child: Column(
                       children: [
-                        Container(
+/*                        Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10.r),
@@ -249,7 +249,7 @@ class _CartScreenState extends State<CartScreen> {
                                                               .text);
                                                 },
                                                 style: ElevatedButton.styleFrom(
-                                                  backgroundColor: const Color(0xFF333333),
+                primary: const Color(0xFF333333),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(5.r),
@@ -286,17 +286,48 @@ class _CartScreenState extends State<CartScreen> {
                               ],
                             ),
                           ),
-                        ),
+                        )*/
                       ],
                     ),
                   ),
 
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  SizedBox(height: 10.h,),
 
                   //Calculate Card
+                  Padding(
+                    padding: EdgeInsets.all(5.r),
+                    child: InkWell(
+                      onTap: () async {
+                        print("tapped");
+                        if(LocalDataHelper().getUserToken()!=null){
+                          await _cartController.order();
+                        }
+                        else{
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context){
+                              return LoginScreen();
+                            })
+                          );
+                        }
+                        /*Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => CheckOutScreen(
+                              addToCartListModel: addToCartListModel,
+                            ),
+                          ),
+                        );*/
+                      },
+                      child: Obx((){
+                        return ButtonWidget(
+                          buttonTittle: "Book Now",
+                          isLoading: _cartController.isBooking.value,
+                        );
+                      })
+                    ),
+                  )
 
+
+/*
                   Padding(
                     padding: EdgeInsets.only(right: 15.w, left: 15.w, bottom: 15.h),
                     child: Container(
@@ -413,6 +444,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                   )
+*/
                 ],
               ),
             )

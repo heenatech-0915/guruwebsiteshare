@@ -9,7 +9,6 @@ import 'package:cpcdiagnostics_ecommerce/src/servers/network_service.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_tags.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/app_theme_data.dart';
 import 'package:cpcdiagnostics_ecommerce/src/utils/constants.dart';
-
 import '../../../../../config.dart';
 import '../../../controllers/currency_converter_controller.dart';
 import '../../../data/local_data_helper.dart';
@@ -54,7 +53,6 @@ class PaymentScreen extends GetView<PaymentController> {
                           url: Uri.parse(
                               "${NetworkService.apiUrl}/payment?trx_id=$trxId&token=$token&$langCurrCode"
                           ),
-
                         ),
                         initialUserScripts:
                             UnmodifiableListView<UserScript>([]),
