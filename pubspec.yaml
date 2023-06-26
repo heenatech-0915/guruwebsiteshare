@@ -47,7 +47,7 @@ dependencies:
   hive_flutter: ^1.1.0
   http: ^0.13.4
   image_picker: ^0.8.5+3
-  intl: ^0.17.0
+  intl: ^0.18.0
   lottie: 
   material_design_icons_flutter: ^5.0.6595
   modal_bottom_sheet: ^2.1.0
@@ -77,8 +77,8 @@ dependencies:
   masonry_grid: ^1.0.0
   flutter_staggered_animations: ^1.1.1
   double_back_to_close: ^2.0.0
-  flowder: ^0.2.0
-  flutter_form_builder: ^7.7.0
+  
+  flutter_form_builder: ^9.0.0
   whatsapp_share2: ^2.0.2
   show_up_animation: ^2.0.0
   percent_indicator: ^4.2.2

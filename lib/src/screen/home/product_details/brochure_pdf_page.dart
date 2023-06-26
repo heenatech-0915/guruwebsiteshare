@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flowder/flowder.dart';
+// import 'package:flowder/flowder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -138,26 +138,26 @@ class _BrochurePdfPageState extends State<BrochurePdfPage> {
         savedDir.create();
       }
       path = _localPath;
-      DownloaderCore core;
-      DownloaderUtils options;
-      options = DownloaderUtils(
-        progressCallback: (current, total) {
-          final progress = (current / total) * 100;
-          downloadProgress = progress;
-        },
-        file: File('$path/$pdf.pdf'),
-        progress: ProgressImplementation(),
-        onDone: () {
-          OpenFile.open('$path/$pdf.pdf');
-        },
-        deleteOnCancel: true,
-      );
-      core = await Flowder.download(
-        widget.brochuresPage
-            ? widget.pdfUrl!
-            : url + widget.pdfUrl!,
-        options,
-      );
+      // DownloaderCore core;
+      // DownloaderUtils options;
+      // options = DownloaderUtils(
+      //   progressCallback: (current, total) {
+      //     final progress = (current / total) * 100;
+      //     downloadProgress = progress;
+      //   },
+      //   file: File('$path/$pdf.pdf'),
+      //   progress: ProgressImplementation(),
+      //   onDone: () {
+      //     OpenFile.open('$path/$pdf.pdf');
+      //   },
+      //   deleteOnCancel: true,
+      // );
+      // core = await Flowder.download(
+      //   widget.brochuresPage
+      //       ? widget.pdfUrl!
+      //       : url + widget.pdfUrl!,
+      //   options,
+      // );
     }
   catch(e){
     isDownloading = false;

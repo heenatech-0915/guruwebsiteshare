@@ -53,7 +53,7 @@ class CouponScreen extends StatelessWidget {
                                 Clipboard.setData(
                                   ClipboardData(
                                       text: visitShopModel!
-                                          .data!.coupons![index].code),
+                                          .data!.coupons![index].code!),
                                 ).then(
                                   (value) => ScaffoldMessenger.of(context)
                                       .showSnackBar(

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flowder/flowder.dart';
+// import 'package:flowder/flowder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -277,26 +277,26 @@ class DetailsPageController extends GetxController {
       savedDir.create();
     }
     path = _localPath;
-    DownloaderCore core;
-    DownloaderUtils options;
-    options = DownloaderUtils(
-      progressCallback: (current, total) {
-        final progress = (current / total) * 100;
-        downloadProgress.value = progress;
-        update();
-      },
-      file: File('$path/loremipsum.pdf'),
-      progress: ProgressImplementation(),
-      onDone: () {
-        print('file downloaded');
-        OpenFile.open('$path/loremipsum.pdf');
-      },
-      deleteOnCancel: true,
-    );
-    core = await Flowder.download(
-      "https://cpcdiagnostics.bizzonit.com/public/$pdf",
-      options,
-    );
+    // DownloaderCore core;
+    // DownloaderUtils options;
+    // options = DownloaderUtils(
+    //   progressCallback: (current, total) {
+    //     final progress = (current / total) * 100;
+    //     downloadProgress.value = progress;
+    //     update();
+    //   },
+    //   file: File('$path/loremipsum.pdf'),
+    //   progress: ProgressImplementation(),
+    //   onDone: () {
+    //     print('file downloaded');
+    //     OpenFile.open('$path/loremipsum.pdf');
+    //   },
+    //   deleteOnCancel: true,
+    // );
+    // core = await Flowder.download(
+    //   "https://cpcdiagnostics.bizzonit.com/public/$pdf",
+    //   options,
+    // );
   }
 
   @override

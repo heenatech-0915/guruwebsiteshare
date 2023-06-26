@@ -140,7 +140,7 @@ class _VoucherListState extends State<VoucherList> {
                                                           .value!
                                                           .data!
                                                           .coupons![index]
-                                                          .code),
+                                                          .code!),
                                                 ).then(
                                                   (value) =>
                                                       ScaffoldMessenger.of(
